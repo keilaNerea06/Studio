@@ -1,26 +1,31 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Personajes;
 using Directores;
 
-namespace Peli
+namespace Peli;
+
+class Pelicula
 {
-    class Pelicula
-    {
-        int idPelicula;
-        string Nombre;
-        DateTime FechaEstreno;
-        DateTime FechaCreacion;
-        Double Duracion;
-        string Genero;
-        int Calificacion;
-        int Presupuesto;
-        string ProgramaEstilo;
-        Director director;
-        int idStudio;
-        List<Personaje> personajes;
-    }
+    public int IdPelicula { get; set; }
+
+    public required string Nombre { get; set; }
+
+    public DateTime FechaEstreno { get; set; }
+
+    public DateTime FechaCreacion { get; set; }
+
+    public Double Duracion { get; set; }
+
+    public required string Genero { get; set; }
+
+    public int Calificacion { get; set; }
+
+    public int Presupuesto { get; set; }
+
+    public required string ProgramaEstilo { get; set; }
+
+    public int idStudio { get; set; }
+
+    public required Director director { get; set; }
+
+    public List<Personaje> Personajes { get; set; } = [];
 }
