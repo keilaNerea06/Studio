@@ -8,9 +8,9 @@ namespace Directores
 {
     class Director
     {
-        int idDirector;
-        string Nombre;
-        string Apellido;
-        DateTime FechaNacimiento;
+        public int idDirector { get; set; }
+        public required string Nombre { get; set; }
+        public required string Apellido { get; set; }
+        public DateTime FechaNacimiento { get; set; }
     }
 }

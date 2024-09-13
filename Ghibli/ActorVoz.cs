@@ -8,8 +8,8 @@ namespace Actores
 {
     class ActorVoz
     {
-        int idActor;
-        string Nombre;
-        string Apellido;
+        public int idActor { get; set; }
+        public required string Nombre { get; set; }
+        public required string Apellido { get; set; }
     }
 }

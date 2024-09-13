@@ -9,10 +9,10 @@ namespace estudio
 {
     class Studio
     {
-        int idStudio;
-        string Nombre;
-        DateTime FechaFundacion;
-        string Ubicacion;
-        List<Pelicula> Peliculas;
+        public int idStudio { get; set; }
+        public required string Nombre { get; set; }
+        public DateTime FechaFundacion { get; set; }
+        public required string Ubicacion { get; set; }
+        public List<Pelicula> Peliculas { get; set; } = [];
     }
 }

@@ -9,9 +9,9 @@ namespace Personajes
 {
     class Personaje
     {
-        int idPersonaje;
-        string Nombre;
-        int idPelicula;
-        ActorVoz Actor;
+        public int idPersonaje { get; set; }
+        public required string Nombre { get; set; }
+        public int idPelicula { get; set; }
+        public required ActorVoz Actor { get; set; }
     }
 }
