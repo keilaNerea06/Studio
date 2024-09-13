@@ -3,7 +3,7 @@ using Directores;
 
 namespace Peli;
 
-class Pelicula
+public class Pelicula
 {
     public int IdPelicula { get; set; }
 
