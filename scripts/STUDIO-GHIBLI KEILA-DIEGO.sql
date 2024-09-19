@@ -1,6 +1,6 @@
-drop database if exists Studio;
-create database Studio;
-use Studio;
+drop database if exists studio;
+create database studio;
+use studio;
 
 create table Director(
  nombre varchar(20),

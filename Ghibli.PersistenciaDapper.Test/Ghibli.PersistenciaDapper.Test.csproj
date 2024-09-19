@@ -29,5 +29,10 @@
     <ProjectReference Include="..\Ghibli\Ghibli.csproj" />
     <ProjectReference Include="..\Ghibli.PersistenciaDapper\Ghibli.PersistenciaDapper.csproj" />
   </ItemGroup>
+    <ItemGroup>
+    <None Update="appSettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
 
 </Project>

@@ -1,4 +1,5 @@
-Insert into director (id_director, nombre, apellido, fecha_nacimiento, nacionalidad)
+use studio;
+Insert into `Director` (id_director, nombre, apellido, fecha_nacimiento, nacionalidad)
 Values (1, 'Hayao', 'Miyazaki', '1941-01-05', 'Japonesa'),
 (2, 'Isao', 'Takahata', '1935-10-29', 'Japonesa'),
 (3, 'Hiromasa', 'Yonebayashi', '1973-07-10', 'Japonesa'),
@@ -10,7 +11,6 @@ Values (1, 'Hayao', 'Miyazaki', '1941-01-05', 'Japonesa'),
 
 
 Insert into Estudio(id_estudio, nombre, fecha_fundacion, ubicacion) 
-
 VALUES (1, 'Studio Ghibli', '1985-06-15', 'Koganei, Tokyo, Japan');
 
 
@@ -261,7 +261,6 @@ values	('Midred', 'Barrera', 1),
 --  EL PROGRAMA USADO  EN TODOS LOS INSERT DE PELÍCULAS
 
 Insert into peliculas (id_pelicula, id_estudio, id_director, nombre, fecha_estreno, fecha_creacion, Duracion, genero, presupuesto, calificacion, Programa_stilo) 
-
 VALUES (1, 1, 5, 'Haru el reino de los gatos', '2002-07-19', '2002-01-15', '120 minutos', 'Animación/Fantasía', 50000000, 8.5, 'Software1'),
   (2, 1, 4, 'Cuentos de terramar', '2006-07-29', '2006-02-10', '115 minutos', 'Animación/Aventura', 60000000, 7.8, 'Software2'),
   (3, 1, 1, 'Totoro', '1988-04-16', '1987-09-01', '86 minutos', 'Animación/Familia', 30000000, 8.3, 'Software3'),

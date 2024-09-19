@@ -21,7 +21,7 @@ END&&
 drop procedure if exists agregarPer&&
 CREATE procedure agregarPer(unidpersonaje int, unidpelicula int, unnombre varchar(40))
 begin
-	insert INTO personajes (id_personaje, id_pelicula, nombre)
+	insert INTO `Personajes` (id_personaje, id_pelicula, nombre)
 					values (unidpersonaje, unidpelicula, unnombre);
 end&&
 
@@ -34,10 +34,11 @@ begin
 end &&
 
 drop procedure if exists nuevoActor&&
-create procedure nuevoActor (unnombre varchar(20), unapellido varchar(20), unidactor int)
+create procedure nuevoActor (unnombre varchar(20), unapellido varchar(20), out unidactor int)
 begin
-	insert into actor_voz(nombre, apellido, id_actor)
+	insert into Actor_voz (nombre, apellido, id_actor)
     values	(unnombre, unapellido, unidactor);
+	SET unidactor = LAST_INSERT_ID();
 end &&
 -- FUNCTIONS
 -- 1.- 
@@ -106,13 +107,13 @@ create trigger CasignacionAP before insert on personaje_voz
 for each row
 begin
 	if (not exists(select *
-					from personajes
+					from Personajes
                     where id_personaje= NEW.id_personaje)) then
                     SIGNAL SQLSTATE '45000'
 					SET MESSAGE_TEXT = 'No existe el personaje';
     END IF;
     if (not exists(select *
-					from actor_voz
+					from Actor_voz
                     where id_actor= NEW.id_actor)) then
                     SIGNAL SQLSTATE '45000'
 					SET MESSAGE_TEXT = 'No existe el actor';
@@ -122,18 +123,18 @@ end &&
 
 
 drop trigger if exists CasignacionA && 
-create trigger CasignacionA before insert on actor_voz
+create trigger CasignacionA before insert on Actor_voz
 for each row
 begin
 	IF(exists(select *
-			from actor_voz
+			from Actor_voz
 			where nombre= new.nombre
 			and Apellido= new.Apellido))then 
 			SIGNAL SQLSTATE '45000'
 			SET MESSAGE_TEXT = 'Ya existe el actor';
 	END IF;
     IF(exists(select *
-			from actor_voz
+			from `Actor_voz`ctor_voz
 			where id_actor=new.id_actor))then 
 			SIGNAL SQLSTATE '45000'
 			SET MESSAGE_TEXT = 'Ya existe ese id';
