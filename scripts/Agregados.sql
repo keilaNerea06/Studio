@@ -10,6 +10,15 @@ BEGIN
     where id_pelicula = peli;
 end &&
 
+drop PROCEDURE if EXISTS directorAG&&
+CREATE PROCEDURE directorAG(out unidDirector int, unnombre VARCHAR(20),unapellido VARCHAR(20), unanacionalidad VARCHAR(20), unaFecha DATETIME)
+Begin
+	INSERT into Director (id_Director, nombre, Apellido, nacionalidad, Fecha_nacimiento)
+	VALUES (unidDirector , unnombre , unapellido , unanacionalidad , unaFecha);
+	SET unidDirector = LAST_INSERT_ID();
+
+end&&
+
 -- 2.- agregar pelicula
 drop procedure if exists agregarP&&
 CREATE PROCEDURE agregarP	(unidpelicula int, unidestudio int, unidirector int, unnombre varchar(100), unfechaestreno date, unfechacreacion date, unDuracion varchar(20), ungenero varchar(20), unpresupuesto double, uncalificacion varchar(20), unprogramastilo varchar(20))

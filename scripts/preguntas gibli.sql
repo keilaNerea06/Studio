@@ -41,3 +41,4 @@ group by P.id_pelicula;
 -- mostrar presupuesto y calificaion de cada peli
 select PE.nombre 'Peliculas', PE.presupuesto, PE.calificacion
 from peliculas PE;
+

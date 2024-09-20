@@ -17,7 +17,7 @@ public class RepoActorTest : TestBase
         {
             Nombre = "Guillermo",
             Apellido = "Franchella",
-            IdActor= 562
+            IdActor= 122
         };
 
         _repoActor.Alta(guillermo);

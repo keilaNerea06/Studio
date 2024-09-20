@@ -27,7 +27,7 @@ public class RepoActor : RepoBase, IRepoActor
         Conexion.Execute("nuevoActor", parametros);
        
         //Obtengo el valor de parametro de tipo salida
-        actor.IdActor = parametros.Get<byte>("@unidactor");
+        actor.IdActor = parametros.Get<int>("@unidactor");
     }
 
     public ActorVoz? Detalle(int idActor)

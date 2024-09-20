@@ -1,3 +1,4 @@
+-- Active: 1700068523370@@127.0.0.1@3306@studio
 drop database if exists studio;
 create database studio;
 use studio;
@@ -5,7 +6,7 @@ use studio;
 create table Director(
  nombre varchar(20),
  Apellido varchar(20),
- id_Director int,
+ id_Director int AUTO_INCREMENT,
  Fecha_nacimiento date,
  nacionalidad varchar(20), 
  
@@ -14,12 +15,12 @@ create table Director(
 create table Actor_voz(
  nombre varchar(20),
  Apellido  varchar(20), 
- id_actor int,
+ id_actor int AUTO_INCREMENT,
  constraint pk_Actor_voz primary key(id_actor)
 );
 
 create table Estudio(
-id_estudio int not null,
+id_estudio int not null AUTO_INCREMENT,
 nombre varchar(20), 
 fecha_fundacion date, 
 ubicacion varchar(100),
@@ -27,7 +28,7 @@ constraint pk_Estudio primary key(id_estudio)
 );
 
 create table peliculas(
-id_pelicula    int unique not null,
+id_pelicula    int unique not null AUTO_INCREMENT,
 id_estudio    int, 
 id_director  int,
 nombre    varchar(100),
