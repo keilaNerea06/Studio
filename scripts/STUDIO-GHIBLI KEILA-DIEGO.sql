@@ -1,4 +1,3 @@
--- Active: 1700068523370@@127.0.0.1@3306@studio
 drop database if exists studio;
 create database studio;
 use studio;

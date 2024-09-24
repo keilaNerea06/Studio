@@ -19,7 +19,7 @@ Begin
 
 end&&
 
--- 2.- agregar pelicula
+-- 2.- agregarO pelicula
 drop procedure if exists agregarP&&
 CREATE PROCEDURE agregarP	(unidpelicula int, unidestudio int, unidirector int, unnombre varchar(100), unfechaestreno date, unfechacreacion date, unDuracion varchar(20), ungenero varchar(20), unpresupuesto double, uncalificacion varchar(20), unprogramastilo varchar(20))
 BEGIN
@@ -28,10 +28,11 @@ BEGIN
 END&&
 
 drop procedure if exists agregarPer&&
-CREATE procedure agregarPer(unidpersonaje int, unidpelicula int, unnombre varchar(40))
+CREATE procedure agregarPer(out unidpersonaje int, unidpelicula int, unnombre varchar(40))
 begin
 	insert INTO `Personajes` (id_personaje, id_pelicula, nombre)
 					values (unidpersonaje, unidpelicula, unnombre);
+					SET unidpersonaje = LAST_INSERT_ID();
 end&&
 
 -- 3.-Asignar personajes con actores

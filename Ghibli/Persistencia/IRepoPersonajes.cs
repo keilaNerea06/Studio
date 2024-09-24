@@ -1,5 +1,4 @@
 using Personajes;
-using Directores;
 
 namespace Ghibli.Persistencia;
 
