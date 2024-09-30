@@ -22,7 +22,7 @@ public class RepoPersonajeTest : TestBase
         };
         var guillermo = new Personaje()
         {
-            Nombre = "Guillermo",
+            Nombre = "YO ya estoyyyyyy",
             idPelicula= 2,
             idPersonaje=1,
             Actor= guill

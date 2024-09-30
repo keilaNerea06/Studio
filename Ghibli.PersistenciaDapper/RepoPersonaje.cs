@@ -20,16 +20,18 @@ public class RepoPersonaje : RepoBase, IRepoPersonajes
 
         //Preparo los parametros del Stored Procedure
         var parametros = new DynamicParameters();
+        parametros.Add("@unidpersonaje", direction: ParameterDirection.Output);
         parametros.Add("@unidpelicula",personaje.idPelicula);
         parametros.Add("@unnombre", personaje.Nombre);
+        var parametrosR = new DynamicParameters();
+        parametrosR.Add("@actor",personaje.Actor.IdActor);
+        parametrosR.Add("@personaje",personaje.idPersonaje);
         //parametros.Add("actor", personaje.Actor);
-        parametros.Add("@unidpersonaje", direction: ParameterDirection.Output);
-        
         
         Conexion.Execute("agregarPer", parametros);
-       
+        Conexion.Execute("asignarAP",parametrosR);
         //Obtengo el valor de parametro de tipo salida
-        personaje.idPersonaje = parametros.Get<int>("@unidactor");
+        personaje.idPersonaje = parametros.Get<int>("@unidpersonaje");
     }
 
     public Personaje? Detalle(int idPersonaje)

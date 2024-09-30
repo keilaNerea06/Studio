@@ -46,7 +46,7 @@ references Director (id_Director)
 );
 
 create table Personajes(
-id_personaje int,
+id_personaje int not null AUTO_INCREMENT,
 id_pelicula int,
 Nombre varchar(40),
 constraint PK_personajes primary key(id_personaje),
