@@ -23,12 +23,12 @@ public class RepoStudio : RepoBase, IRepoStudio
         var parametros = new DynamicParameters();
         
         parametros.Add("@unnombre", studio.Nombre);
-        parametros.Add("@unfechaestreno", studio.FechaFundacion);
-        parametros.Add("@unfechacreacion", studio.Ubicacion);
-        parametros.Add("@unidpelicula", direction: ParameterDirection.Output);
+        parametros.Add("@unfechafundacion", studio.FechaFundacion);
+        parametros.Add("@unubicacion", studio.Ubicacion);
+        parametros.Add("@unidstudio", direction: ParameterDirection.Output);
     
         
-        Conexion.Execute("agregarP", parametros);
+        Conexion.Execute("NStudio", parametros);
        
         //Obtengo el valor de parametro de tipo salida
         studio.idStudio = parametros.Get<int>("@unidpelicula");

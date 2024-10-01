@@ -51,6 +51,15 @@ begin
     values	(unnombre, unapellido, unidactor);
 	SET unidactor = LAST_INSERT_ID();
 end &&
+
+-- nuevo no preguntes por que pero es necesario... creo.
+DROP PROCEDURE if EXISTS NStudio&&
+CREATE PROCEDURE NStudio(out unidstudio int, unnombre VARCHAR(20), unfechafundacion date, unubicacion VARCHAR(20))
+begin
+	INSERT INTO `Estudio`(id_estudio,nombre,fecha_fundacion,ubicacion)
+	VALUES	(unidstudio, unnombre, unfechafundacion, unubicacion);
+	SET unidstudio = LAST_INSERT_ID();
+end &&
 -- FUNCTIONS
 -- 1.- 
 
