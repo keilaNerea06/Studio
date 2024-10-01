@@ -23,7 +23,7 @@ end&&
 drop procedure if exists agregarP&&
 CREATE PROCEDURE agregarP	(out unidpelicula int, unidestudio int, unidirector int, unnombre varchar(100), unfechaestreno date, unfechacreacion date, unDuracion varchar(20), ungenero varchar(20), unpresupuesto double, uncalificacion varchar(20), unprogramastilo varchar(20))
 BEGIN
-	INSERT INTO Peliculas	(id_pelicula, id_estudio, id_director, nombre, fecha_estreno, fecha_creacion, Duracion, genero, presupuesto, calificacion, programa_stilo)
+	INSERT INTO peliculas	(id_pelicula, id_estudio, id_director, nombre, fecha_estreno, fecha_creacion, Duracion, genero, presupuesto, calificacion, programa_stilo)
 					VALUES (unidpelicula, unidestudio, unidirector, unnombre, unfechaestreno, unfechacreacion, unDuracion, ungenero, unpresupuesto, uncalificacion, unprogramastilo);
 					SET unidpelicula = LAST_INSERT_ID();
 END&&
