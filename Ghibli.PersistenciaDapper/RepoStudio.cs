@@ -10,8 +10,8 @@ namespace Ghibli.PersistenciaDapper;
 public class RepoStudio : RepoBase, IRepoStudio
 {
     static readonly string _listadoPeliculas =
-        @"SELECT id_pelicula AS IdPelicula, nombre as Nombre, fecha_estreno AS FechaEstreno, fecha_creacion AS FechaCreacion, Duracion, genero AS Genero, calificafion AS Calificacion, presupuesto AS Presupuesto, programa_estilo AS ProgramaEstilo, id_estudio AS idStudio
-        FROM    peliculas";
+        @"SELECT id_estudio AS idStudio, nombre as Nombre, fecha_fundacion AS FechaFundacion, ubicacion AS Ubicacion
+        FROM    Estudio";
     public RepoStudio(IDbConnection conexion)
         : base(conexion) { }
 
@@ -31,7 +31,7 @@ public class RepoStudio : RepoBase, IRepoStudio
         Conexion.Execute("NStudio", parametros);
        
         //Obtengo el valor de parametro de tipo salida
-        studio.idStudio = parametros.Get<int>("@unidpelicula");
+        studio.idStudio = parametros.Get<int>("@unidstudio");
     }
 
     public Studio? Detalle(int idStudio)
