@@ -13,11 +13,11 @@ public class Pelicula
 
     public DateTime FechaCreacion { get; set; }
 
-    public Double Duracion { get; set; }
+    public required string Duracion { get; set; }
 
     public required string Genero { get; set; }
 
-    public int Calificacion { get; set; }
+    public required string Calificacion { get; set; }
 
     public int Presupuesto { get; set; }
 

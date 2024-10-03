@@ -9,6 +9,15 @@ public class RepoDirectorTest : TestBase
 
     public RepoDirectorTest() : base()
         => _repoDirector = new RepoDirector(Conexion);
+      [Fact]
+    public void TraerDirector()
+    {
+        var directors = _repoDirector.Listar();
+
+        Assert.NotEmpty(directors);
+        //Pregunto por rubros que se dan de alta en "scripts/bd/MySQL/03 Inserts.sql"
+        Assert.Contains(directors, c => c.Nombre == "Hayao" && c.Apellido == "Miyazaki");
+    }
 
     [Fact]
     public void AltaOK()

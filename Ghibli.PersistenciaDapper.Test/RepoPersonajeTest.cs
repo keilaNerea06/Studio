@@ -1,5 +1,4 @@
 using Actores;
-using Directores;
 using Ghibli.Persistencia;
 using Personajes;
 
@@ -13,6 +12,15 @@ public class RepoPersonajeTest : TestBase
         => _repoPersonaje = new RepoPersonaje(Conexion);
 
     [Fact]
+    public void TraerPersonaje()
+    {
+        var personajes = _repoPersonaje.Listar();
+
+        Assert.NotEmpty(personajes);
+        //Pregunto por rubros que se dan de alta en "scripts/bd/MySQL/03 Inserts.sql"
+        Assert.Contains(personajes, c => c.Nombre == "Príncipe Arren / Lebannen" && c.idPersonaje == 1);
+    }
+    [Fact]
     public void AltaOK()
     {   var guill = new ActorVoz()
         {
@@ -22,7 +30,7 @@ public class RepoPersonajeTest : TestBase
         };
         var guillermo = new Personaje()
         {
-            Nombre = "YO ya estoyyyyyy",
+            Nombre = "Hachiko",
             idPelicula= 2,
             idPersonaje=1,
             Actor= guill

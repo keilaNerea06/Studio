@@ -10,6 +10,15 @@ public class RepoPeliculaTest : TestBase
 
     public RepoPeliculaTest() : base()
         => _repoPelicula = new RepoPelicula(Conexion);
+     [Fact]
+    public void TraerPelicula()
+    {
+        var peliculas = _repoPelicula.Listar();
+
+        Assert.NotEmpty(peliculas);
+        //Pregunto por rubros que se dan de alta en "scripts/bd/MySQL/03 Inserts.sql"
+        Assert.Contains(peliculas, c => c.Nombre == "Cuentos de terramar" && c.IdPelicula == 2);
+    }
 
     [Fact]
     public void AltaOK()
@@ -30,9 +39,9 @@ public class RepoPeliculaTest : TestBase
             idStudio = 1,
             FechaEstreno = new DateTime(2011, 6, 10),
             FechaCreacion = new DateTime(2011, 6, 10),
-            Duracion= 2.0,
+            Duracion= "2.h",
             Genero= "Animacion",
-            Calificacion= 9,
+            Calificacion= "9.2",
             Presupuesto= 110002,
             ProgramaEstilo= "usaweew",
             director= guillermo

@@ -9,6 +9,15 @@ public class RepoActorTest : TestBase
 
     public RepoActorTest() : base()
         => _repoActor = new RepoActor(Conexion);
+    [Fact]
+    public void TraerActor()
+    {
+        var actor = _repoActor.Listar();
+
+        Assert.NotEmpty(actor);
+        //Pregunto por rubros que se dan de alta en "scripts/bd/MySQL/03 Inserts.sql"
+        Assert.Contains(actor, c => c.Nombre == "Midred" && c.Apellido == "Barrera");
+    }
 
     [Fact]
     public void AltaOK()

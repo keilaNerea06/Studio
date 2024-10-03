@@ -1,7 +1,5 @@
-using Actores;
 using Ghibli.Persistencia;
 using estudio;
-using Peli;
 using Directores;
 
 namespace Ghibli.PersistenciaDapper.Test;
@@ -12,7 +10,15 @@ public class RepoStudioTest : TestBase
 
     public RepoStudioTest() : base()
         => _repoStudio = new RepoStudio(Conexion);
+     [Fact]
+    public void TraerStudio()
+    {
+        var studios = _repoStudio.Listar();
 
+        Assert.NotEmpty(studios);
+        //Pregunto por rubros que se dan de alta en "scripts/bd/MySQL/03 Inserts.sql"
+        Assert.Contains(studios, c => c.Nombre == "Studio Ghibli" && c.idStudio == 1);
+    }
     [Fact]
     public void AltaOK()
     {
@@ -25,16 +31,7 @@ public class RepoStudioTest : TestBase
             FechaNacimiento= new DateTime(2011, 6, 10)
             
         };
-        var P = new Pelicula()
-        {
-            Nombre= "Wall-e",
-            Calificacion=9,
-            idStudio=4,
-            IdPelicula=1,
-            Genero= "ANIMACION",
-            ProgramaEstilo=" ",
-            director = guillermo
-        };
+        
         var D = new Studio()
         {
             idStudio=4,
