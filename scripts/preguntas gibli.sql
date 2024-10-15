@@ -12,7 +12,6 @@ where P.id_pelicula=24;
 -- 2.- mostrar todas las peliculas que tiene gibli antes de los 2000
 select *
 from peliculas
-where year(fecha_estreno)<2000
 order by year(fecha_estreno) asc;
 
 -- 3.- mostrar todas las peliculas que tiene gibli deespues de los 2000

@@ -10,6 +10,7 @@ BEGIN
     where id_pelicula = peli;
 end &&
 
+
 drop PROCEDURE if EXISTS directorAG&&
 CREATE PROCEDURE directorAG(out unidDirector int, unnombre VARCHAR(20),unapellido VARCHAR(20), unanacionalidad VARCHAR(20), unaFecha DATETIME)
 Begin
@@ -27,6 +28,33 @@ BEGIN
 					VALUES (unidpelicula, unidestudio, unidirector, unnombre, unfechaestreno, unfechacreacion, unDuracion, ungenero, unpresupuesto, uncalificacion, unprogramastilo);
 					SET unidpelicula = LAST_INSERT_ID();
 END&&
+
+drop procedure if exists agregarPL&&
+CREATE PROCEDURE agregarPL	(unidpelicula int, unidestudio int, unidirector int, unnombre varchar(100), unfechaestreno date, unfechacreacion date, unDuracion varchar(20), ungenero varchar(20), unpresupuesto double, uncalificacion varchar(20), unprogramastilo varchar(20))
+BEGIN
+	INSERT INTO peliculas	(id_pelicula, id_estudio, id_director, nombre, fecha_estreno, fecha_creacion, Duracion, genero, presupuesto, calificacion, programa_stilo)
+					VALUES (unidpelicula, unidestudio, unidirector, unnombre, unfechaestreno, unfechacreacion, unDuracion, ungenero, unpresupuesto, uncalificacion, unprogramastilo);
+					
+END&&
+
+drop procedure if exists eliminarP&&
+CREATE PROCEDURE eliminarP(unidpelicula int)
+BEGIN
+
+	delete from personaje_voz PV
+    where exists(select *
+    from personajes P
+    where P.id_personaje=PV.id_personaje
+    and P.id_pelicula=unidpelicula);
+	
+    
+	delete from personajes
+    where id_pelicula=unidpelicula;
+
+	delete from peliculas
+    where id_pelicula=unidpelicula;
+END&&
+
 
 drop procedure if exists agregarPer&&
 CREATE procedure agregarPer(out unidpersonaje int, unidpelicula int, unnombre varchar(40))

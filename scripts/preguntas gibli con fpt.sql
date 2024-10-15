@@ -12,3 +12,4 @@ call personajesP(24);
 
 select Actores_vozPeliculas (3);
 
+call eliminarP(49);
