@@ -182,7 +182,7 @@ begin
 			SET MESSAGE_TEXT = 'Ya existe el actor';
 	END IF;
     IF(exists(select *
-			from `Actor_voz`ctor_voz
+			from `Actor_voz`
 			where id_actor=new.id_actor))then 
 			SIGNAL SQLSTATE '45000'
 			SET MESSAGE_TEXT = 'Ya existe ese id';
