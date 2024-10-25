@@ -51,4 +51,12 @@ public class RepoPeliculaTest : TestBase
 
         Assert.NotEqual(0, nino.IdPelicula);
     }
+
+    [Fact]
+    public void DetalleOK()
+    {
+        var  totoro = _repoPelicula.Detalle(3);
+        Assert.NotNull(totoro);
+        Assert.True( totoro.Nombre == "Totoro" && totoro.IdPelicula == 3 );
+    }
 }

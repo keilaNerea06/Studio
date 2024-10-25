@@ -10,6 +10,10 @@ public class RepoActor : RepoBase, IRepoActor
     static readonly string _listadoActores =
         @"SELECT id_actor AS IdActor, nombre, apellido
         FROM    Actor_voz";
+    
+    static readonly string _detalleActor = _listadoActores + @"
+    WHERE id_actor = @idactor
+    LIMIT 1";
     public RepoActor(IDbConnection conexion)
         : base(conexion) { }
 
@@ -32,7 +36,10 @@ public class RepoActor : RepoBase, IRepoActor
 
     public ActorVoz? Detalle(int idActor)
     {
-        throw new NotImplementedException();
+         var actor = Conexion.QueryFirst<ActorVoz>(
+            _detalleActor,
+            new {idActor = idActor});
+        return actor;
     }
 
     public IEnumerable<ActorVoz> Listar()

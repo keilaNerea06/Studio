@@ -9,7 +9,8 @@ public class RepoDirectorTest : TestBase
 
     public RepoDirectorTest() : base()
         => _repoDirector = new RepoDirector(Conexion);
-      [Fact]
+
+    [Fact]
     public void TraerDirector()
     {
         var directors = _repoDirector.Listar();
@@ -26,7 +27,7 @@ public class RepoDirectorTest : TestBase
         {
             idDirector= 122,
             Nombre = "Guillermo",
-            Apellido = "Franchella",
+            Apellido = "Del Toro",
             nacionalidad="Peru",
             FechaNacimiento= new DateTime(2011, 6, 10)
         };
@@ -34,5 +35,13 @@ public class RepoDirectorTest : TestBase
         _repoDirector.Alta(guillermo);
 
         Assert.NotEqual(0, guillermo.idDirector);
+    }
+
+    [Fact]
+    public void DetalleOK()
+    {
+        var hayao = _repoDirector.Detalle(1);
+        Assert.NotNull(hayao);
+        Assert.True(hayao.Nombre == "Hayao" && hayao.Apellido == "Miyazaki");
     }
 }

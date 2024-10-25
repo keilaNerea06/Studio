@@ -10,6 +10,9 @@ public class RepoDirector : RepoBase, IRepoDirector
     static readonly string _listadoDirectores =
         @"SELECT id_Director AS idDirector, nombre, Apellido, nacionalidad, Fecha_nacimiento as FechaNacimiento
         FROM    Director";
+    static readonly string _detalleDirector = _listadoDirectores + @"
+        WHERE id_Director = @idDirector
+        LIMIT 1";
     public RepoDirector(IDbConnection conexion)
         : base(conexion) { }
 
@@ -33,7 +36,10 @@ public class RepoDirector : RepoBase, IRepoDirector
 
     public Director? Detalle(int idDirector)
     {
-        throw new NotImplementedException();
+        var director = Conexion.QueryFirst<Director>(
+            _detalleDirector,
+            new {idDirector = idDirector});
+        return director;
     }
 
     public IEnumerable<Director> Listar()

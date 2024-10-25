@@ -25,7 +25,7 @@ public class RepoActorTest : TestBase
         var guillermo = new ActorVoz()
         {
             Nombre = "Guillermo",
-            Apellido = "Franchella",
+            Apellido = "Del Toro",
             IdActor= 122
         };
 
@@ -33,4 +33,13 @@ public class RepoActorTest : TestBase
 
         Assert.NotEqual(0, guillermo.IdActor);
     }
+    [Fact]
+    public void DetalleOK()
+    {
+        var  Midred = _repoActor.Detalle(1);
+        Assert.NotNull(Midred);
+        Assert.True( Midred.Nombre == "Midred" && Midred.Apellido == "Barrera" );
+    }
+    
+    
 }

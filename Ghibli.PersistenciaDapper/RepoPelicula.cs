@@ -11,6 +11,10 @@ public class RepoPelicula : RepoBase, IRepoPelicula
     static readonly string _listadoPeliculas =
         @"SELECT id_pelicula AS IdPelicula, nombre as Nombre, fecha_estreno AS FechaEstreno, fecha_creacion AS FechaCreacion, Duracion, genero AS Genero, calificacion AS Calificacion, presupuesto AS Presupuesto, Programa_stilo AS ProgramaEstilo, id_estudio AS idStudio
         FROM    peliculas";
+    
+    static readonly string _detallepelicula = _listadoPeliculas + @"
+    where id_pelicula = @idpelicula
+    limit 1";
     public RepoPelicula(IDbConnection conexion)
         : base(conexion) { }
 
@@ -41,7 +45,10 @@ public class RepoPelicula : RepoBase, IRepoPelicula
 
     public Pelicula? Detalle(int idPelicula)
     {
-        throw new NotImplementedException();
+        var pelicula = Conexion.QueryFirst<Pelicula>(
+            _detallepelicula,
+            new {idPelicula = idPelicula});
+        return pelicula;
     }
 
     public IEnumerable<Pelicula> Listar()
