@@ -13,10 +13,11 @@ public class RepoDirectorTest : TestBase
     [Fact]
     public void TraerDirector()
     {
+        //llamamos a la funcion listar 
         var directors = _repoDirector.Listar();
-
+        // Aseguramos de que haya guardado algo en directors
         Assert.NotEmpty(directors);
-        //Pregunto por rubros que se dan de alta en "scripts/bd/MySQL/03 Inserts.sql"
+        //Pregunto por los directores que se dan de alta "
         Assert.Contains(directors, c => c.Nombre == "Hayao" && c.Apellido == "Miyazaki");
     }
 

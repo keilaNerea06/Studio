@@ -11,6 +11,11 @@ public class RepoPersonaje : RepoBase, IRepoPersonajes
     static readonly string _listadoPersonajes =
         @"SELECT id_personaje AS idPersonaje, Nombre, id_pelicula AS idPelicula
         FROM    Personajes";
+
+    static readonly string _detallePersonajes = _listadoPersonajes + @"
+    where id_personaje = @idPersonaje
+    limit 1";
+    
     public RepoPersonaje(IDbConnection conexion)
         : base(conexion) { }
 
@@ -36,7 +41,10 @@ public class RepoPersonaje : RepoBase, IRepoPersonajes
 
     public Personaje? Detalle(int idPersonaje)
     {
-        throw new NotImplementedException();
+        var personaje = Conexion.QueryFirst<Personaje>(
+            _detallePersonajes,
+            new {idPersonaje = idPersonaje});
+        return personaje;
     }
 
     public IEnumerable<Personaje> Listar()

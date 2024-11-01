@@ -9,9 +9,13 @@ namespace Ghibli.PersistenciaDapper;
 
 public class RepoStudio : RepoBase, IRepoStudio
 {
-    static readonly string _listadoPeliculas =
+    static readonly string _listadoStudio =
         @"SELECT id_estudio AS idStudio, nombre as Nombre, fecha_fundacion AS FechaFundacion, ubicacion AS Ubicacion
         FROM    Estudio";
+
+    static readonly string _detalleStudio = _listadoStudio + @"
+    Where id_estudio= @idStudio
+    Limit 1";
     public RepoStudio(IDbConnection conexion)
         : base(conexion) { }
 
@@ -36,12 +40,13 @@ public class RepoStudio : RepoBase, IRepoStudio
 
     public Studio? Detalle(int idStudio)
     {
-        throw new NotImplementedException();
+        var studio = Conexion.QueryFirst<Studio>(_detalleStudio, new {idStudio = idStudio});
+        return studio;
     }
 
     public IEnumerable<Studio> Listar()
     {
-        var peliculas = Conexion.Query<Studio>(_listadoPeliculas);
-        return peliculas;
+        var studio = Conexion.Query<Studio>(_listadoStudio);
+        return studio;
     }
 }

@@ -45,4 +45,11 @@ public class RepoStudioTest : TestBase
 
         Assert.NotEqual(0, D.idStudio);
     }
+    [Fact]
+    public void DetalleOK()
+    {
+        var Ghibli = _repoStudio.Detalle(1);
+        Assert.NotNull(Ghibli);
+        Assert.True(Ghibli.Nombre == "Studio Ghibli" && Ghibli.idStudio == 1);
+    }
 }

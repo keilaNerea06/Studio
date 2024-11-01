@@ -40,4 +40,12 @@ public class RepoPersonajeTest : TestBase
 
         Assert.NotEqual(0, guillermo.idPersonaje);
     }
+
+    [Fact]
+    public void DetalleOK()
+    {
+        var gavilan = _repoPersonaje.Detalle(3);
+        Assert.NotNull(gavilan);
+        Assert.True(gavilan.Nombre == "Gavilán" && gavilan.idPelicula == 2);
+    }
 }
