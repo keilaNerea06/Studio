@@ -2,6 +2,7 @@ using System.Data;
 using Dapper;
 using Ghibli.Persistencia;
 using Directores;
+using System.Threading.Tasks;
 
 namespace Ghibli.PersistenciaDapper;
 
@@ -18,8 +19,6 @@ public class RepoDirector : RepoBase, IRepoDirector
 
     public void Alta(Director director)
     {
-        //throw new NotImplementedException();
-
         //Preparo los parametros del Stored Procedure
         var parametros = new DynamicParameters();
         parametros.Add("@unidDirector", direction: ParameterDirection.Output);
@@ -27,9 +26,25 @@ public class RepoDirector : RepoBase, IRepoDirector
         parametros.Add("@unapellido", director.Apellido);
         parametros.Add("@unanacionalidad", director.nacionalidad);
         parametros.Add("@unaFecha", director.FechaNacimiento);
-        
+
         Conexion.Execute("directorAG", parametros);
-       
+
+        //Obtengo el valor de parametro de tipo salida
+        director.idDirector = parametros.Get<int>("@unidDirector");
+    }
+
+    public async Task AsyncAlta(Director director)
+    {
+        //Preparo los parametros del Stored Procedure
+        var parametros = new DynamicParameters();
+        parametros.Add("@unidDirector", direction: ParameterDirection.Output);
+        parametros.Add("@unnombre", director.Nombre);
+        parametros.Add("@unapellido", director.Apellido);
+        parametros.Add("@unanacionalidad", director.nacionalidad);
+        parametros.Add("@unaFecha", director.FechaNacimiento);
+
+        await Conexion.ExecuteAsync("directorAG", parametros);
+
         //Obtengo el valor de parametro de tipo salida
         director.idDirector = parametros.Get<int>("@unidDirector");
     }
@@ -38,13 +53,28 @@ public class RepoDirector : RepoBase, IRepoDirector
     {
         var director = Conexion.QueryFirst<Director>(
             _detalleDirector,
-            new {idDirector = idDirector});
+            new { idDirector = idDirector });
+        return director;
+    }
+
+    public async Task<Director?> AsyncDetalle(int idDirector)
+    {
+        var director = await Conexion.QueryFirstAsync<Director>(
+            _detalleDirector,
+            new { idDirector });
+
         return director;
     }
 
     public IEnumerable<Director> Listar()
     {
         var Directores = Conexion.Query<Director>(_listadoDirectores);
+        return Directores;
+    }
+    
+    public async Task<IEnumerable<Director>> AsyncListar()
+    {
+        var Directores = await Conexion.QueryAsync<Director>(_listadoDirectores);
         return Directores;
     }
 }

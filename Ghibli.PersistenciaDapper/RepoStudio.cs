@@ -25,28 +25,59 @@ public class RepoStudio : RepoBase, IRepoStudio
 
         //Preparo los parametros del Stored Procedure
         var parametros = new DynamicParameters();
-        
+
         parametros.Add("@unnombre", studio.Nombre);
         parametros.Add("@unfechafundacion", studio.FechaFundacion);
         parametros.Add("@unubicacion", studio.Ubicacion);
         parametros.Add("@unidstudio", direction: ParameterDirection.Output);
-    
-        
+
+
         Conexion.Execute("NStudio", parametros);
-       
+
         //Obtengo el valor de parametro de tipo salida
         studio.idStudio = parametros.Get<int>("@unidstudio");
     }
 
+    public async Task AsyncAlta(Studio studio)
+    {
+
+        //Preparo los parametros del Stored Procedure
+        var parametros = new DynamicParameters();
+
+        parametros.Add("@unnombre", studio.Nombre);
+        parametros.Add("@unfechafundacion", studio.FechaFundacion);
+        parametros.Add("@unubicacion", studio.Ubicacion);
+        parametros.Add("@unidstudio", direction: ParameterDirection.Output);
+
+
+        await Conexion.ExecuteAsync("NStudio", parametros);
+
+        //Obtengo el valor de parametro de tipo salida
+        studio.idStudio = parametros.Get<int>("@unidstudio");
+    }
+
+
     public Studio? Detalle(int idStudio)
     {
-        var studio = Conexion.QueryFirst<Studio>(_detalleStudio, new {idStudio = idStudio});
+        var studio = Conexion.QueryFirst<Studio>(_detalleStudio, new { idStudio = idStudio });
+        return studio;
+    }
+
+    public async Task<Studio?> AsyncDetalle(int idStudio)
+    {
+        var studio = await Conexion.QueryFirstAsync<Studio>(_detalleStudio, new { idStudio = idStudio });
         return studio;
     }
 
     public IEnumerable<Studio> Listar()
     {
         var studio = Conexion.Query<Studio>(_listadoStudio);
+        return studio;
+    }
+    
+    public async Task<IEnumerable<Studio>> AsyncListar()
+    {
+        var studio = await Conexion.QueryAsync<Studio>(_listadoStudio);
         return studio;
     }
 }
