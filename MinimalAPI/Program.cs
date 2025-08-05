@@ -37,7 +37,7 @@ if (app.Environment.IsDevelopment())
 
 // Trae una lista de todos los directores
 app.MapGet("/Director", async (IRepoDirector directores) =>
-    await directores.AsyncListar);
+    await directores.AsyncListar());
 
 app.MapPost("/Director", async (Director nuevo, IRepoDirector directores) =>
 {
@@ -50,7 +50,7 @@ app.MapPost("/Director", async (Director nuevo, IRepoDirector directores) =>
 
 
 app.MapGet("/Actor", async (IRepoActor actores) =>
-    await actores.AsyncListar);
+    await actores.AsyncListar());
 
 
 app.MapPost("/Actor", async (Actores nuevo, IRepoActor actor) =>
